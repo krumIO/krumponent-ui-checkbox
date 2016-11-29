@@ -56,7 +56,7 @@
     }
     </style>
 
-    <div class="krum-checkbox" on-tap="change">
+    <div id="krum-checkbox" class="krum-checkbox" on-tap="change">
         <div class="checkmark">
             <div class="checkmark_top"></div>
             <div class="checkmark_bottom"></div>
@@ -79,6 +79,7 @@
           type: Boolean,
           notify: true,
           reflectToAttribute: true,
+          value:false
         }
       },
 
@@ -89,35 +90,36 @@
 
       _checked: function(checked){
         if(checked){
-            this.$$(".krum-checkbox").classList.add("checked");
+            Polymer.dom(this.root).querySelector('#krum-checkbox').classList.add("checked");
         }else{
-          this.$$(".krum-checkbox").classList.remove("checked");
+          Polymer.dom(this.root).querySelector('#krum-checkbox').classList.remove("checked");
           this.set("indeterminate", false);
         }
       },
 
       _checkindeterminate: function(value){
         if(value){
-              this.$$(".krum-checkbox").classList.add("indeterminate");
+              Polymer.dom(this.root).querySelector('#krum-checkbox').classList.add("indeterminate");
         }else{
-          this.$$(".krum-checkbox").classList.remove("indeterminate");
+          Polymer.dom(this.root).querySelector('#krum-checkbox').classList.remove("indeterminate");
         }
       },
 
 
       change: function(event){
-        if(this.$$(".krum-checkbox").classList.value.indexOf("checked") != -1 && !this.indeterminate){
+        console.log(Polymer.dom(this.root).querySelector('#krum-checkbox').classList);
+        if(Polymer.dom(this.root).querySelector('#krum-checkbox').classList.contains("checked") && !this.indeterminate){
           // has class checked
           this.set("checked", false);
-          this.$$(".krum-checkbox").classList.remove("checked");
+          Polymer.dom(this.root).querySelector('#krum-checkbox').classList.remove("checked");
         }else{
           // does not have class checked
           if(!this.checked){
-              this.$$(".krum-checkbox").classList.add("checked");
+            Polymer.dom(this.root).querySelector('#krum-checkbox').classList.add("checked");
             this.set("checked", true);
           }
           this.indeterminate = false;
-          this.$$(".krum-checkbox").classList.remove("indeterminate");
+          Polymer.dom(this.root).querySelector('#krum-checkbox').classList.remove("indeterminate");
         }
 
       },
