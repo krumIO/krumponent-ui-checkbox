@@ -56,6 +56,9 @@
       background-color: #FFE082;
     }
 
+    .displaynone {
+      display: none;
+    }
     .disabled {
         background-color: #C8C8C8;
     }
@@ -117,12 +120,14 @@
       },
 
       _checkDisabled: function(disabled){
+
           if(disabled){
-              Polymer.dom(this.root).querySelector('#krum-checkbox').querySelector('.checkmark').style ="display: none;";
-              Polymer.dom(this.root).querySelector('#krum-checkbox').classList.add("disabled");
+            Polymer.dom(this.root).querySelector('#krum-checkbox').querySelector('.checkmark').classList.add('displaynone');
+            Polymer.dom(this.root).querySelector('#krum-checkbox').classList.add("disabled");
           }else{
-              Polymer.dom(this.root).querySelector('#krum-checkbox').querySelector('.checkmark').style ="display: block;";
-              Polymer.dom(this.root).querySelector('#krum-checkbox').classList.remove("disabled");
+
+            Polymer.dom(this.root).querySelector('#krum-checkbox').querySelector('.checkmark').classList.remove('displaynone');
+            Polymer.dom(this.root).querySelector('#krum-checkbox').classList.remove("disabled");
           }
       },
 
