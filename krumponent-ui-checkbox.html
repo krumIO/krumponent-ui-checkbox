@@ -15,6 +15,7 @@
       border: 1px solid black;
       width: 22px;
       height: 22px;
+      opacity: 0.7;
     }
     .checkmark {
         border: 0px solid black;
@@ -54,6 +55,10 @@
     .indeterminate {
       background-color: #FFE082;
     }
+
+    .disabled {
+        background-color: #C8C8C8;
+    }
     </style>
 
     <div id="krum-checkbox" class="krum-checkbox" on-tap="change">
@@ -80,6 +85,12 @@
           notify: true,
           reflectToAttribute: true,
           value:false
+        },
+        disabled: {
+            type: Boolean,
+            notify: true,
+            reflectToAttribute: true,
+            observer: '_checkDisabled'
         }
       },
 
@@ -105,6 +116,15 @@
         }
       },
 
+      _checkDisabled: function(disabled){
+          if(disabled){
+              Polymer.dom(this.root).querySelector('#krum-checkbox').querySelector('.checkmark').style ="display: none;";
+              Polymer.dom(this.root).querySelector('#krum-checkbox').classList.add("disabled");
+          }else{
+              Polymer.dom(this.root).querySelector('#krum-checkbox').querySelector('.checkmark').style ="display: block;";
+              Polymer.dom(this.root).querySelector('#krum-checkbox').classList.remove("disabled");
+          }
+      },
 
       change: function(event){
         console.log(Polymer.dom(this.root).querySelector('#krum-checkbox').classList);
