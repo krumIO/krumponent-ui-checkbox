@@ -1,3 +1,5 @@
+https://api.travis-ci.org/krumIO/krumponent-ui-checkbox.svg?branch=master
+
 # \<krumponent-ui-checkbox\>
 
 A three-state checkbox web component
